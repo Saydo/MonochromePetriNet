@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7C7C495B-C863-49FB-9DCE-07F1B3513716}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MonochromePetriNet</RootNamespace>
+    <AssemblyName>MonochromePetriNet</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Container\GraphicsItems\ColourGraphicsItem.cs" />
+    <Compile Include="Container\GraphicsItems\GraphicsItem.cs" />
+    <Compile Include="Container\GraphicsItems\LineGraphicsItem.cs" />
+    <Compile Include="Container\GraphicsItems\LinkGraphicsItem.cs" />
+    <Compile Include="Container\GraphicsItems\RectangleGraphicsItem.cs" />
+    <Compile Include="Container\GraphicsItems\RoundGraphicsItem.cs" />
+    <Compile Include="Container\IdGenerator.cs" />
+    <Compile Include="Container\LinearAlgebra\Algorithm.cs" />
+    <Compile Include="Container\LinearAlgebra\Equation.cs" />
+    <Compile Include="Container\LinkWrapper.cs" />
+    <Compile Include="Container\MarkerInfo.cs" />
+    <Compile Include="Container\MonochromePetriNet.cs" />
+    <Compile Include="Container\MovedMarkersInfo.cs" />
+    <Compile Include="Container\Rules\AccumulateRule.cs" />
+    <Compile Include="Container\Rules\MarkerIdConvert.cs" />
+    <Compile Include="Container\Rules\MarkerTransitionRule.cs" />
+    <Compile Include="Container\Rules\MoveRule.cs" />
+    <Compile Include="Gui\Core\Events\PetriNetNodeEventArgs.cs" />
+    <Compile Include="Gui\Core\Events\ShowInfoEventArgs.cs" />
+    <Compile Include="Gui\Core\Events\StateEventArgs.cs" />
+    <Compile Include="Gui\Core\Events\UpdateItemBorderEventArgs.cs" />
+    <Compile Include="Gui\Core\PetriNetResourceStorage.cs" />
+    <Compile Include="Gui\Core\Style\PetriNetStyle.cs" />
+    <Compile Include="Gui\Core\ResourceStorage.cs" />
+    <Compile Include="Gui\Core\SelectionArea.cs" />
+    <Compile Include="Container\StateWrapper.cs" />
+    <Compile Include="Container\Storages\AccumulateRuleStorage.cs" />
+    <Compile Include="Container\Storages\IAccumulateRuleStorage.cs" />
+    <Compile Include="Container\Storages\ILinkStorage.cs" />
+    <Compile Include="Container\Storages\IMarkerStorage.cs" />
+    <Compile Include="Container\Storages\IMoveRuleStorage.cs" />
+    <Compile Include="Container\Storages\IStateStorage.cs" />
+    <Compile Include="Container\Storages\ITransitionStorage.cs" />
+    <Compile Include="Container\Storages\LinkStorage.cs" />
+    <Compile Include="Container\Storages\MarkerStorage.cs" />
+    <Compile Include="Container\Storages\MoveRuleStorage.cs" />
+    <Compile Include="Container\Storages\StateStorage.cs" />
+    <Compile Include="Container\Storages\TransitionStorage.cs" />
+    <Compile Include="Container\TransitionWrapper.cs" />
+    <Compile Include="Gui\Core\Style\RectangleShapeStyle.cs" />
+    <Compile Include="Gui\Core\Style\RoundShapeStyle.cs" />
+    <Compile Include="Gui\Core\Style\ShapeStyle.cs" />
+    <Compile Include="Gui\Forms\AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\Forms\AboutForm.Designer.cs" />
+    <Compile Include="Gui\Forms\ItemStyle\LinkStyleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\Forms\ItemStyle\LinkStyleForm.Designer.cs" />
+    <Compile Include="Gui\Forms\ItemStyle\RectangleItemStyleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\Forms\ItemStyle\RectangleItemStyleForm.Designer.cs" />
+    <Compile Include="Gui\Forms\ItemStyle\RoundItemStyleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\Forms\ItemStyle\RoundItemStyleForm.Designer.cs" />
+    <Compile Include="Gui\Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\Forms\MainForm.Designer.cs" />
+    <Compile Include="Gui\Forms\RemoveMarkerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\Forms\RemoveMarkerForm.Designer.cs" />
+    <Compile Include="Gui\Forms\ShowInfo\MarkerInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\Forms\ShowInfo\MarkerInfoForm.Designer.cs" />
+    <Compile Include="Gui\Forms\ShowInfo\ShowItemInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\Forms\ShowInfo\ShowItemInfoForm.Designer.cs" />
+    <Compile Include="Gui\Forms\ShowInfo\StateInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\Forms\ShowInfo\StateInfoForm.Designer.cs" />
+    <Compile Include="Gui\Forms\ShowInfo\TransitionInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\Forms\ShowInfo\TransitionInfoForm.Designer.cs" />
+    <Compile Include="Gui\Forms\ToolStripRadioButtonMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons\AppIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\common\AddRectangleTransition32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\common\AddRoundMarker32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\common\AddRoundState32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\common\Move32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\common\OneStep32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\common\Pause32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\common\Play32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\common\RectangleTransition32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\common\Remove32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\common\RemoveMarker32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\common\RoundMarker32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\common\RoundState32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\common\Stop32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\common\View32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\common\AddLink32x32.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
