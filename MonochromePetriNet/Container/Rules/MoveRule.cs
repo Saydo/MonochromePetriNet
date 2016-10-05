@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 namespace MonochromePetriNet.Container.Rules
 {
-    public delegate void MoveMarkersAction(List<int> restMarkers, List<int> updatedMarkers,
-        List<int> newMarkers, StateWrapper outputState, StateWrapper inputState,
+    public delegate void MoveMarkersAction(TransitedMarkersInfo markersInfo, StateWrapper outputState, StateWrapper inputState,
         TransitionWrapper transition);
 
     public sealed class MoveRule : MarkerTransitionRule
@@ -22,12 +21,12 @@ namespace MonochromePetriNet.Container.Rules
             {
                 return false;
             }
-            List<int> restMarkers, updatedMarkers, newMarkers;
-            if (!this.Transit(idGenerator, outputState, out restMarkers, out updatedMarkers, out newMarkers))
+            var markerInfo = this.Transit(idGenerator, outputState);
+            if (markerInfo == null)
             {
                 return false;
             }
-            MoveFunction(restMarkers, updatedMarkers, newMarkers, outputState, inputState, transition);
+            MoveFunction(markerInfo, outputState, inputState, transition);
             return true;
         }
     }

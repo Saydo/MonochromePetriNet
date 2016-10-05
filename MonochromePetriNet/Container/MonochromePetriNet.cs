@@ -17,8 +17,8 @@ namespace MonochromePetriNet.Container
             this.Markers = _markers = new MarkerStorage(this);
             this.Links = _links = new LinkStorage(this);
             this.MoveRules = _moveRules = new MoveRuleStorage(this);
-            this.PrevAccumulateRules = _prevAccumulateRules = new AccumulateRuleStorage(this);
-            this.NextAccumulateRules = _nextAccumulateRules = new AccumulateRuleStorage(this);
+            this.PreviousMoveActions = _previousMoveActions = new AccumulateRuleStorage(this);
+            this.NextMoveActions = _nextMoveActions = new AccumulateRuleStorage(this);
         }
 
         public int GenerateItemId()

@@ -77,6 +77,20 @@ namespace MonochromePetriNet.Container
                 }
             }
 
+            public TransitedMarkersInfo ForeMove(StateWrapper outputState)
+            {
+                TransitedMarkersInfo markersInfo = new TransitedMarkersInfo();
+                foreach (int m in outputState.Markers)
+                {
+                    markersInfo.RestMarkers.Add(m);
+                }
+                for (int i = 0; i < Rules.Count; ++i)
+                {
+                    while (Rules[i].Transit(_parent._idGenerator, markersInfo)) ;
+                }
+                return markersInfo;
+            }
+
             private int GetNewRuleIndex(Rules.MoveRule rule)
             {
                 for (int i = 0; i < Rules.Count; ++i)

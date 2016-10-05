@@ -5,10 +5,12 @@ namespace MonochromePetriNet.Container
 {
     public partial class MonochromePetriNet
     {
-        public IAccumulateRuleStorage PrevAccumulateRules;
-        public IAccumulateRuleStorage NextAccumulateRules;
-        private AccumulateRuleStorage _prevAccumulateRules;
-        private AccumulateRuleStorage _nextAccumulateRules;
+        public IAccumulateRuleStorage PreviousMoveActions;
+        public IAccumulateRuleStorage IntermediateMoveActions;
+        public IAccumulateRuleStorage NextMoveActions;
+        private AccumulateRuleStorage _previousMoveActions;
+        private AccumulateRuleStorage _intermediateMoveActions;
+        private AccumulateRuleStorage _nextMoveActions;
 
         private class AccumulateRuleStorage : IAccumulateRuleStorage
         {
@@ -76,6 +78,28 @@ namespace MonochromePetriNet.Container
                 for (int i = 0; i < Rules.Count; ++i)
                 {
                     while (Rules[i].Accumulate(_parent._idGenerator, state));
+                }
+            }
+
+            public TransitedMarkersInfo ForeAccumulate(StateWrapper state)
+            {
+                TransitedMarkersInfo markersInfo = new TransitedMarkersInfo();
+                foreach (int m in state.Markers)
+                {
+                    markersInfo.RestMarkers.Add(m);
+                }
+                for (int i = 0; i < Rules.Count; ++i)
+                {
+                    while (Rules[i].Transit(_parent._idGenerator, markersInfo));
+                }
+                return markersInfo;
+            }
+
+            public void ForeAccumulate(TransitedMarkersInfo markersInfo)
+            {
+                for (int i = 0; i < Rules.Count; ++i)
+                {
+                    while (Rules[i].Transit(_parent._idGenerator, markersInfo)) ;
                 }
             }
 

@@ -15,8 +15,6 @@ namespace MonochromePetriNet.Container
             public List<StateWrapper> SelectedStates;
             private MonochromePetriNet _parent;
 
-            private List<MovedMarkersInfo> _movedMarkers;
-
             public StateStorage(MonochromePetriNet parent)
             {
                 _parent = parent;
@@ -387,7 +385,79 @@ namespace MonochromePetriNet.Container
 
             public void MoveMarkersByRules()
             {
-                _movedMarkers = new List<MovedMarkersInfo>();
+                var transitions = _parent._transitions.Transitions;
+                var movedMarkers = new List<MovedMarkersInfo>(transitions.Count);
+                StateWrapper outputState;
+                StateWrapper inputState;
+                var prevMoveActions = _parent._previousMoveActions;
+                var interMoveActions = _parent._intermediateMoveActions;
+                var nextMoveActions = _parent._nextMoveActions;
+                TransitedMarkersInfo transitedMarkers;
+                List<UpdatedMarkersInfo> updatedMarkersList;
+                List<int> newMarkers;
+                for (int i = 0; i < transitions.Count; ++i)
+                {
+                    // previous move
+                    updatedMarkersList = new List<UpdatedMarkersInfo>();
+                    newMarkers = new List<int>();
+                    for (int j = 0; j < transitions[i].InputLinks.Count; ++j)
+                    {
+                        outputState = transitions[i].InputLinks[j].State;
+                        transitedMarkers = prevMoveActions.ForeAccumulate(outputState);
+                        updatedMarkersList.Add(new UpdatedMarkersInfo(transitedMarkers.RestMarkers, transitedMarkers.UpdatedMarkers));
+                        foreach (int m in transitedMarkers.NewMarkers)
+                        {
+                            newMarkers.Add(m);
+                        }
+                    }
+                    // TODO: input filter to updatedMarkersList, newMarkers
+                    // intermediate move
+                    if (newMarkers.Count > 0)
+                    {
+                        transitedMarkers = new TransitedMarkersInfo();
+                        transitedMarkers.NewMarkers = newMarkers;
+                        interMoveActions.ForeAccumulate(transitedMarkers);
+                        newMarkers = new List<int>();
+                        foreach (int m in transitedMarkers.RestMarkers)
+                        {
+                            newMarkers.Add(m);
+                        }
+                        foreach (int m in transitedMarkers.NewMarkers)
+                        {
+                            newMarkers.Add(m);
+                        }
+                    }
+                    movedMarkers.Add(new MovedMarkersInfo(updatedMarkersList, newMarkers));
+                }
+                // TODO: output filter to updatedMarkersList, newMarkers
+                // TODO: Move
+
+                /*
+                for (int i = 0; i < transitions.Count; ++i)
+                {
+                    for (int j = 0; j < transitions[i].OutputLinks.Count; ++j)
+                    {
+                        inputState = transitions[i].OutputLinks[j].State;
+                        //
+                    }
+                }
+                */
+                /*
+                List<int> stateMarkers;
+                for (int i = 0; i < transitions.Count; ++i)
+                {
+                    //movedMarkers.Add(new MovedMarkersInfo(new List<UpdatedMarkersInfo>(), new List<int>()));
+                    for (int j = 0; j < transitions[i].InputLinks.Count; ++j)
+                    {
+                        //stateMarkers = transitions[i].InputLinks[j].State.Markers;
+                        //
+                        _parent._prevAccumulateRules.Accumulate(transitions[i].InputLinks[j].State);
+                    }
+                    //transitions[i].InputLinks
+                }
+                */
+
+                //_movedMarkers = new List<MovedMarkersInfo>();
                 // обходом в ширину сформировать список MovedMarkers (prevAcc->Move1->InterAcc)
                 // Move2 -> NextMove
                 /*

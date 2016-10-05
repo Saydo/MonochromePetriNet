@@ -62,9 +62,11 @@
     <Compile Include="Container\MonochromePetriNet.cs" />
     <Compile Include="Container\MovedMarkersInfo.cs" />
     <Compile Include="Container\Rules\AccumulateRule.cs" />
+    <Compile Include="Container\Rules\AccumulateRuleFilter.cs" />
     <Compile Include="Container\Rules\MarkerIdConvert.cs" />
     <Compile Include="Container\Rules\MarkerTransitionRule.cs" />
     <Compile Include="Container\Rules\MoveRule.cs" />
+    <Compile Include="Container\Rules\TransitionFilter.cs" />
     <Compile Include="Gui\Core\Events\PetriNetNodeEventArgs.cs" />
     <Compile Include="Gui\Core\Events\ShowInfoEventArgs.cs" />
     <Compile Include="Gui\Core\Events\StateEventArgs.cs" />
@@ -90,6 +92,26 @@
     <Compile Include="Gui\Core\Style\RectangleShapeStyle.cs" />
     <Compile Include="Gui\Core\Style\RoundShapeStyle.cs" />
     <Compile Include="Gui\Core\Style\ShapeStyle.cs" />
+    <Compile Include="Gui\Core\Xml\MonochromePetriNetXml.cs" />
+    <Compile Include="Gui\Core\Xml\LinkXml.cs" />
+    <Compile Include="Gui\Core\Xml\Style\BrushXml.cs" />
+    <Compile Include="Gui\Core\Xml\Style\ItemStyleXml.cs" />
+    <Compile Include="Gui\Core\Xml\Style\PenXml.cs" />
+    <Compile Include="Gui\Core\Xml\Style\PetriNetStyleXml.cs" />
+    <Compile Include="Gui\Core\Xml\PetriNetXmlSerializer.cs" />
+    <Compile Include="Gui\Core\Xml\Rules\AccumulateRuleXml.cs" />
+    <Compile Include="Gui\Core\Xml\Rules\ActionXml.cs" />
+    <Compile Include="Gui\Core\Xml\Rules\InputStreamsXml.cs" />
+    <Compile Include="Gui\Core\Xml\Rules\MoveRuleXml.cs" />
+    <Compile Include="Gui\Core\Xml\Rules\MarkerIdConvertXml.cs" />
+    <Compile Include="Gui\Core\Xml\Rules\OutputStreamsXml.cs" />
+    <Compile Include="Gui\Core\Xml\Rules\PermissibleMoveActionsXml.cs" />
+    <Compile Include="Gui\Core\Xml\Rules\StreamXml.cs" />
+    <Compile Include="Gui\Core\Xml\StateXml.cs" />
+    <Compile Include="Gui\Core\Xml\Style\RectangleItemStyleXml.cs" />
+    <Compile Include="Gui\Core\Xml\Style\RoundItemStyleXml.cs" />
+    <Compile Include="Gui\Core\Xml\Style\SelectionModeXml.cs" />
+    <Compile Include="Gui\Core\Xml\TransitionXml.cs" />
     <Compile Include="Gui\Forms\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +228,7 @@
   <ItemGroup>
     <None Include="Resources\images\common\AddLink32x32.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

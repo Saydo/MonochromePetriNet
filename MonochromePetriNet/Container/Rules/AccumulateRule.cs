@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 namespace MonochromePetriNet.Container.Rules
 {
-    public delegate void AccumulateMarkersAction(List<int> restMarkers, List<int> updatedMarkers,
-        List<int> newMarkers, StateWrapper state);
+    public delegate void AccumulateMarkersAction(TransitedMarkersInfo markersInfo, StateWrapper state);
 
     public sealed class AccumulateRule : MarkerTransitionRule
     {
@@ -21,12 +20,12 @@ namespace MonochromePetriNet.Container.Rules
             {
                 return false;
             }
-            List<int> restMarkers, updatedMarkers,newMarkers;
-            if (!this.Transit(idGenerator, state, out restMarkers, out updatedMarkers, out newMarkers))
+            var markersInfo = this.Transit(idGenerator, state);
+            if (markersInfo == null)
             {
                 return false;
             }
-            AccumulateFunction(restMarkers, updatedMarkers, newMarkers, state);
+            AccumulateFunction(markersInfo, state);
             return true;
         }
     }
